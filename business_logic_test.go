@@ -3,18 +3,20 @@ package main
 import "testing"
 
 type MockDataRetriever struct {
+	mockPeople []Person
 }
 
 func (m MockDataRetriever) GetAllPeople() []Person {
-	return []Person{{
-		"kenny",
-	},{
-		"kelly",
-	}}
+	return m.mockPeople
 }
 
 func Test_PrintAllPeople(t *testing.T) {
-	mockRepo := MockDataRetriever {
+	mockRepo := MockDataRetriever{
+		mockPeople: []Person{{
+			"kenny",
+		}, {
+			"kelly",
+		}},
 	}
 	logic := BusinessLogic{
 		dataRetriever: mockRepo,
